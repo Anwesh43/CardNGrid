@@ -10,12 +10,11 @@ import android.view.View;
  * Created by anweshmishra on 25/04/17.
  */
 public class GridView extends View {
-    private Paint paint = new Paint(Paint.ANTI_ALIAS_FLAG);
     public GridView(Context context) {
         super(context);
     }
     public void onDraw(Canvas canvas) {
-
+        Paint paint = Constants.paint;
     }
     public boolean onTouchEvent(MotionEvent event) {
         return true;

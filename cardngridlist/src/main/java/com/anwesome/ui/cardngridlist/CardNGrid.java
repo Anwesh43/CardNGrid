@@ -2,6 +2,7 @@ package com.anwesome.ui.cardngridlist;
 
 import android.app.Activity;
 import android.content.Context;
+import android.content.pm.ActivityInfo;
 import android.graphics.Bitmap;
 import android.graphics.Point;
 import android.hardware.display.DisplayManager;
@@ -22,12 +23,11 @@ public class CardNGrid {
     private int w,h;
     private AnimationHandler animationHandler;
     private CardNGridContainer cardNGridContainer;
+
     private List<Card> gridCards = new ArrayList<>(),listCards = new ArrayList<>();
     public CardNGrid(Activity activity) {
         this.activity = activity;
         cardToGridButton = new CardToGridButton(activity);
-        animationHandler = new AnimationHandler(cardToGridButton);
-        cardNGridContainer = new CardNGridContainer(activity);
         cardToGridButton.setOnTapListener(new CardToGridButton.OnTapListener() {
             @Override
             public void onTap() {
@@ -35,6 +35,8 @@ public class CardNGrid {
             }
         });
         initDimension(activity);
+        cardNGridContainer = new CardNGridContainer(activity,w);
+        animationHandler = new AnimationHandler(cardToGridButton,cardNGridContainer);
     }
     public void initDimension(Activity activity) {
         DisplayManager displayManager = (DisplayManager)activity.getSystemService(Context.DISPLAY_SERVICE);
@@ -48,19 +50,19 @@ public class CardNGrid {
     }
     public void addCard(Bitmap bitmap,String title) {
         if(!isShown) {
-            Card card = new Card(bitmap,title);
-            listCards.add(card);
-            gridCards.add(card);
+            listCards.add(new Card(bitmap,title));
+            gridCards.add(new Card(bitmap,title));
         }
     }
     public void show() {
         if(!isShown) {
+            activity.setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
             RelativeLayout relativeLayout = new RelativeLayout(activity);
             relativeLayout.addView(cardToGridButton,new ViewGroup.LayoutParams(w/10,w/10));
             cardToGridButton.setX(w/2-w/20);
             cardToGridButton.setY((Math.max(w,h)-Math.min(w,h))/20);
-            cardNGridContainer.createAndAddCardList(listCards,w);
-            cardNGridContainer.createAndAddGridList(gridCards,w);
+            cardNGridContainer.createAndAddCardList(listCards);
+            cardNGridContainer.createAndAddGridList(gridCards);
             relativeLayout.addView(cardNGridContainer,new ViewGroup.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT));
             cardNGridContainer.setX(0);
             cardNGridContainer.setY(cardToGridButton.getY()+w/9);

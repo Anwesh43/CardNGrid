@@ -10,14 +10,17 @@ public class AnimationHandler implements Animator.AnimatorListener,ValueAnimator
     private CardToGridButton cardToGridButton;
     private ValueAnimator upAnim = ValueAnimator.ofFloat(0,1),downAnim = ValueAnimator.ofFloat(1,0);
     private int dir = 0;
-    public AnimationHandler(CardToGridButton cardToGridButton) {
+    private CardNGridContainer cardNGridContainer;
+    public AnimationHandler(CardToGridButton cardToGridButton,CardNGridContainer cardNGridContainer) {
         this.cardToGridButton = cardToGridButton;
+        this.cardNGridContainer = cardNGridContainer;
         upAnim.setDuration(500);
         downAnim.setDuration(500);
         upAnim.addUpdateListener(this);
         upAnim.addListener(this);
         downAnim.addUpdateListener(this);
         downAnim.addListener(this);
+
     }
     public void start() {
         dir = dir == 1?-1:1;
@@ -37,6 +40,7 @@ public class AnimationHandler implements Animator.AnimatorListener,ValueAnimator
     public void onAnimationUpdate(ValueAnimator valueAnimator) {
         float factor = (float)valueAnimator.getAnimatedValue();
         cardToGridButton.update(factor);
+        cardNGridContainer.updateX(factor);
     }
     public void onAnimationCancel(Animator animator) {
 

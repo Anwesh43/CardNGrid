@@ -2,6 +2,7 @@ package com.anwesome.ui.cardngridlist;
 
 import android.content.Context;
 import android.graphics.Canvas;
+import android.graphics.Color;
 import android.graphics.Paint;
 import android.view.MotionEvent;
 import android.view.View;
@@ -21,6 +22,7 @@ public class CardView extends View {
     }
     public void onDraw(Canvas canvas) {
         Paint paint = Constants.paint;
+        canvas.drawColor(Color.parseColor("#E0E0E0"));
         if(time == 0) {
             initLayout(canvas.getWidth(),cards);
         }

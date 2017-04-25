@@ -42,7 +42,7 @@ public class CardNGrid {
         if(!isShown) {
             activity.addContentView(cardToGridButton,new ViewGroup.LayoutParams(w/10,w/10));
             cardToGridButton.setX(w/2-w/20);
-            cardToGridButton.setY(h/30+w/2-w/20);
+            cardToGridButton.setY((Math.max(w,h)-Math.min(w,h))/20);
             isShown = true;
         }
     }

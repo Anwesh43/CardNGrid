@@ -15,6 +15,10 @@ import android.view.View;
 public class CardToGridButton extends View {
     private int w;
     private CardToGridShape cardToGridShape = new CardToGridShape();
+    private OnTapListener onTapListener;
+    public void setOnTapListener(OnTapListener onTapListener) {
+        this.onTapListener = onTapListener;
+    }
     public CardToGridButton(Context context) {
         super(context);
     }
@@ -27,6 +31,9 @@ public class CardToGridButton extends View {
         cardToGridShape.update(factor);
     }
     public boolean onTouchEvent(MotionEvent event) {
+        if(event.getAction() == MotionEvent.ACTION_DOWN && onTapListener != null) {
+            onTapListener.onTap();
+        }
         return true;
     }
     private class CardToGridShape {
@@ -59,5 +66,8 @@ public class CardToGridButton extends View {
             deg = 90*factor;
             l = ((w/2-w/15))*factor;
         }
+    }
+    public interface OnTapListener {
+        void onTap();
     }
 }

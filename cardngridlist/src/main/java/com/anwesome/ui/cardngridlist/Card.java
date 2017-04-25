@@ -46,4 +46,7 @@ public class Card {
         this.size = size;
         this.bitmap = Bitmap.createScaledBitmap(bitmap,(int)(4*size/5),(int)(3*size/5),true);
     }
+    public int hashCode() {
+        return bitmap.hashCode()+title.hashCode();
+    }
 }

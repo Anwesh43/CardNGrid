@@ -7,14 +7,14 @@ import java.util.List;
  */
 public class LayoutUtil {
     public static void arrangeInGrid(List<Card> cards,float w) {
-        float gap = w/7,x =3*gap/2,y = 3*gap/2,i = 0;
+        float gap = w/7,x = gap ,y = 3*gap/2,i = 0;
         for(Card card:cards) {
             card.setDimension(x,y,gap);
-            x += 3*gap/2;
+            x += 2*gap;
             i++;
             if(i == 3) {
                 i = 0;
-                x = 3*gap/2;
+                x = gap;
                 y += 2*gap;
             }
         }

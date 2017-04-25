@@ -65,7 +65,7 @@ public class CardView extends View {
         }
         public boolean onScroll(MotionEvent e1,MotionEvent e2,float velx,float vely) {
             if(screen.y>=-maxH+h && screen.y<=0) {
-                screen.y+=vely;
+                screen.y-=vely;
                 if(screen.y>=0) {
                     screen.y = 0;
                 }
@@ -73,6 +73,7 @@ public class CardView extends View {
                     screen.y = -maxH+h;
                 }
             }
+            postInvalidate();
             return true;
         }
     }

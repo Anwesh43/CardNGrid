@@ -27,7 +27,7 @@ public class CardNGridContainer extends RelativeLayout{
         CardListView cardListView = new CardListView(getContext(),cards);
         addView(cardListView,new ViewGroup.LayoutParams(wParam,hParam));
         setX(0);
-        cardListView.setMaxH(hParam);
+        cardListView.setMaxH(hParam+w/10+h/20);
         //addView(scrollView,new ViewGroup.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT));
     }
 

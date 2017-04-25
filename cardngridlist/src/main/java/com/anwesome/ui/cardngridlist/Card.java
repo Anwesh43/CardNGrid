@@ -36,11 +36,12 @@ public class Card {
         String msg = "";
         for(int i=0;i<title.length();i++) {
             char letter = title.charAt(i);
-            if(paint.measureText(msg+letter) < (17*size)/20) {
+            if(paint.measureText(msg+letter) < (7*size)/10) {
                 msg += letter;
             }
             else {
                 msg += "...";
+                break;
             }
         }
         return msg;

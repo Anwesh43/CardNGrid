@@ -4,6 +4,7 @@ import android.content.Context;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
+import android.view.GestureDetector;
 import android.view.MotionEvent;
 import android.view.View;
 
@@ -17,15 +18,18 @@ public class CardView extends View {
     private float maxH = 0;
     private Screen screen = new Screen();
     private List<Card> cards = new ArrayList<>();
-    private int time = 0;
+    private int time = 0,h;
+    private GestureDetector gestureDetector;
     public CardView(Context context,List<Card> cardList) {
         super(context);
         this.cards = cardList;
+        gestureDetector = new GestureDetector(context,new ScreenGestureListener());
     }
     public void onDraw(Canvas canvas) {
         Paint paint = Constants.paint;
         canvas.drawColor(Color.parseColor("#E0E0E0"));
         if(time == 0) {
+            h = canvas.getHeight();
             initLayout(canvas.getWidth(),cards);
         }
         canvas.save();
@@ -40,10 +44,7 @@ public class CardView extends View {
 
     }
     public boolean onTouchEvent(MotionEvent event) {
-        if(event.getAction() == MotionEvent.ACTION_DOWN) {
-            handleTap(event.getX(),event.getY());
-        }
-        return true;
+        return gestureDetector.onTouchEvent(event);
     }
     protected void handleTap(float x,float y) {
 
@@ -53,5 +54,26 @@ public class CardView extends View {
     }
     private class Screen {
         float y = 0;
+    }
+    private class ScreenGestureListener extends GestureDetector.SimpleOnGestureListener{
+        public boolean onDown(MotionEvent event) {
+            return true;
+        }
+        public boolean onSingleTapUp(MotionEvent event) {
+            handleTap(event.getX(),event.getY());
+            return true;
+        }
+        public boolean onScroll(MotionEvent e1,MotionEvent e2,float velx,float vely) {
+            if(screen.y>=-maxH+h && screen.y<=0) {
+                screen.y+=vely;
+                if(screen.y>=0) {
+                    screen.y = 0;
+                }
+                if(screen.y<=-maxH+h) {
+                    screen.y = -maxH+h;
+                }
+            }
+            return true;
+        }
     }
 }

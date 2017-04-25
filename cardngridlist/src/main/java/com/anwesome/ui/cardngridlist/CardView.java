@@ -22,15 +22,15 @@ public class CardView extends View {
     public void onDraw(Canvas canvas) {
         Paint paint = Constants.paint;
         if(time == 0) {
-            initLayout(canvas.getWidth());
+            initLayout(canvas.getWidth(),cards);
         }
         for(Card card:cards) {
             card.draw(canvas,paint);
         }
         time++;
     }
-    public void initLayout(int w) {
-        
+    public void initLayout(int w,List<Card> cards) {
+
     }
     public boolean onTouchEvent(MotionEvent event) {
         if(event.getAction() == MotionEvent.ACTION_DOWN) {

@@ -13,6 +13,7 @@ public class Card {
     private Bitmap bitmap;
     private String title;
     private float x,y,size;
+    private OnClickListener onClickListener;
     public Card(Bitmap bitmap,String title) {
         this.bitmap = bitmap;
         this.title = title;
@@ -31,6 +32,9 @@ public class Card {
         canvas.drawText(adjustedTitle,0,paint.getTextSize()/10,paint);
         canvas.restore();
         canvas.restore();
+    }
+    public void setOnClickListener(OnClickListener onClickListener) {
+        this.onClickListener = onClickListener;
     }
     private String getAdjustedTitle(Paint paint) {
         String msg = "";

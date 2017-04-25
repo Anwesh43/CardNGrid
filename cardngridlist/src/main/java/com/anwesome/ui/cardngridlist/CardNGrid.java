@@ -48,10 +48,14 @@ public class CardNGrid {
             h = dimension.y;
         }
     }
-    public void addCard(Bitmap bitmap,String title) {
+    public void addCard(Bitmap bitmap,String title,OnClickListener onClickListener) {
         if(!isShown) {
-            listCards.add(new Card(bitmap,title));
-            gridCards.add(new Card(bitmap,title));
+            Card gridCard = new Card(bitmap,title);
+            Card listCard = new Card(bitmap,title);
+            gridCard.setOnClickListener(onClickListener);
+            listCard.setOnClickListener(onClickListener);
+            listCards.add(listCard);
+            gridCards.add(gridCard);
         }
     }
     public void show() {

@@ -34,3 +34,8 @@
 ```
     cardNGrid.show();
 ```
+
+
+#### Demo
+
+<img src="https://github.com/Anwesh43/CardNGrid/blob/master/screencast/cardngridlist.gif" width="300px" height="500px" alt="gif of the demo">

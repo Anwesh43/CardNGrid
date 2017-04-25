@@ -15,6 +15,7 @@ public class CardView extends View {
     }
     public void onDraw(Canvas canvas) {
         Paint paint = Constants.paint;
+
     }
     public boolean onTouchEvent(MotionEvent event) {
         return true;

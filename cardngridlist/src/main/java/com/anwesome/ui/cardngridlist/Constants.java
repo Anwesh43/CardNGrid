@@ -7,4 +7,5 @@ import android.graphics.Paint;
  */
 public class Constants {
     public static final Paint paint = new Paint(Paint.ANTI_ALIAS_FLAG);
+    public static final float ROTATION_LIMIT = 180;
 }

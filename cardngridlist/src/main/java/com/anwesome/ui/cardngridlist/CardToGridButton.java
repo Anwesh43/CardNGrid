@@ -16,6 +16,7 @@ public class CardToGridButton extends View {
     private int w;
     private CardToGridShape cardToGridShape = new CardToGridShape();
     private OnTapListener onTapListener;
+    private int time = 0;
     public void setOnTapListener(OnTapListener onTapListener) {
         this.onTapListener = onTapListener;
     }
@@ -24,8 +25,11 @@ public class CardToGridButton extends View {
     }
     public void onDraw(Canvas canvas) {
         Paint paint = Constants.paint;
-        w = canvas.getWidth();
+        if(time == 0) {
+            w = (canvas.getWidth());
+        }
         cardToGridShape.draw(canvas,paint);
+        time++;
     }
     public void update(float factor) {
         cardToGridShape.update(factor);
@@ -48,10 +52,9 @@ public class CardToGridButton extends View {
             canvas.rotate(deg);
             for(int i =0;i<3;i++) {
                 canvas.save();
-                canvas.translate(0,(i-1)*w/2);
-                Path path = new Path();
+                canvas.translate(0,(i-1)*(w/2-w/10));
                 for(int k=0;k<3;k++) {
-                    int x = (i-1)*w/2, y = 0;
+                    int x = w/30+(k-1)*(w/2-w/10), y = 0;
                     canvas.save();
                     canvas.translate(x,y);
                     canvas.drawRect(new RectF(-w/30,-w/30,w/30,w/30),paint);
@@ -64,7 +67,7 @@ public class CardToGridButton extends View {
             canvas.restore();
         }
         public void update(float factor) {
-            deg = 90*factor;
+            deg = Constants.ROTATION_LIMIT * factor;
             l = ((w/2-w/15))*factor;
         }
     }

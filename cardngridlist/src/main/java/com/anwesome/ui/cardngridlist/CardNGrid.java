@@ -35,7 +35,7 @@ public class CardNGrid {
             }
         });
         initDimension(activity);
-        cardNGridContainer = new CardNGridContainer(activity,w);
+        cardNGridContainer = new CardNGridContainer(activity,w,h);
         animationHandler = new AnimationHandler(cardToGridButton,cardNGridContainer);
     }
     public void initDimension(Activity activity) {
@@ -63,7 +63,7 @@ public class CardNGrid {
             cardToGridButton.setY((Math.max(w,h)-Math.min(w,h))/20);
             cardNGridContainer.createAndAddCardList(listCards);
             cardNGridContainer.createAndAddGridList(gridCards);
-            relativeLayout.addView(cardNGridContainer,new ViewGroup.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT));
+            relativeLayout.addView(cardNGridContainer,new ViewGroup.LayoutParams(2*w,h));
             cardNGridContainer.setX(0);
             cardNGridContainer.setY(cardToGridButton.getY()+w/9);
             activity.setContentView(relativeLayout);

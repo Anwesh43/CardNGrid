@@ -29,6 +29,7 @@ public class CardToGridButton extends View {
     }
     public void update(float factor) {
         cardToGridShape.update(factor);
+        postInvalidate();
     }
     public boolean onTouchEvent(MotionEvent event) {
         if(event.getAction() == MotionEvent.ACTION_DOWN && onTapListener != null) {

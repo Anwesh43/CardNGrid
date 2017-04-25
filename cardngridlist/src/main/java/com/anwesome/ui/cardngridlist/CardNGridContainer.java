@@ -27,6 +27,7 @@ public class CardNGridContainer extends RelativeLayout{
         CardListView cardListView = new CardListView(getContext(),cards);
         addView(cardListView,new ViewGroup.LayoutParams(wParam,hParam));
         setX(0);
+        cardListView.setMaxH(hParam);
         //addView(scrollView,new ViewGroup.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT));
     }
 
@@ -36,6 +37,7 @@ public class CardNGridContainer extends RelativeLayout{
         //ScrollView scrollView = new ScrollView(getContext());
         gridView.setX(w);
         addView(gridView,new ViewGroup.LayoutParams(wParam,hParam));
+        gridView.setMaxH(hParam);
         //addView(scrollView,new ViewGroup.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT));
     }
     public void updateX(float factor) {

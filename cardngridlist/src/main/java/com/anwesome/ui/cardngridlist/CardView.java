@@ -14,6 +14,8 @@ import java.util.List;
  * Created by anweshmishra on 25/04/17.
  */
 public class CardView extends View {
+    private float maxH = 0;
+    private Screen screen = new Screen();
     private List<Card> cards = new ArrayList<>();
     private int time = 0;
     public CardView(Context context,List<Card> cardList) {
@@ -26,9 +28,12 @@ public class CardView extends View {
         if(time == 0) {
             initLayout(canvas.getWidth(),cards);
         }
+        canvas.save();
+        canvas.translate(0,screen.y);
         for(Card card:cards) {
             card.draw(canvas,paint);
         }
+        canvas.restore();
         time++;
     }
     public void initLayout(int w,List<Card> cards) {
@@ -42,5 +47,11 @@ public class CardView extends View {
     }
     protected void handleTap(float x,float y) {
 
+    }
+    public void setMaxH(float maxH) {
+        this.maxH = maxH;
+    }
+    private class Screen {
+        float y = 0;
     }
 }

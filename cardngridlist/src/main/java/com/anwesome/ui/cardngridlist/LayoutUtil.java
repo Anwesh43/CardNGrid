@@ -22,8 +22,8 @@ public class LayoutUtil {
     public static void arrangeInCardList(List<Card> cards,float w) {
         float x = 0,y = w/20;
         for(Card card:cards) {
-            card.setDimension(x,y,w);
-            y += w/20 +w;
+            card.setDimension(w/4,y,w/2);
+            y += w/20 +w/2;
         }
     }
 }

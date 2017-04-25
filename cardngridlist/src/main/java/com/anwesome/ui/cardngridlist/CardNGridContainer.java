@@ -22,7 +22,7 @@ public class CardNGridContainer extends RelativeLayout{
         setMeasuredDimension(2*w,h);
     }
     public void createAndAddCardList(List<Card> cards) {
-        int wParam = w,hParam = ((11*w)/10)*cards.size();
+        int wParam = w,hParam = ((11*w)/20)*cards.size();
         //ScrollView scrollView = new ScrollView(getContext());
         CardListView cardListView = new CardListView(getContext(),cards);
         addView(cardListView,new ViewGroup.LayoutParams(wParam,hParam));

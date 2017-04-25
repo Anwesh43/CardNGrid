@@ -47,7 +47,11 @@ public class CardView extends View {
         return gestureDetector.onTouchEvent(event);
     }
     protected void handleTap(float x,float y) {
-
+        for(Card card:cards) {
+            if(card.handleTap(x,y)) {
+                break;
+            }
+        }
     }
     public void setMaxH(float maxH) {
         this.maxH = maxH;
@@ -60,7 +64,7 @@ public class CardView extends View {
             return true;
         }
         public boolean onSingleTapUp(MotionEvent event) {
-            handleTap(event.getX(),event.getY());
+            handleTap(event.getX(),event.getY()-screen.y);
             return true;
         }
         public boolean onScroll(MotionEvent e1,MotionEvent e2,float velx,float vely) {

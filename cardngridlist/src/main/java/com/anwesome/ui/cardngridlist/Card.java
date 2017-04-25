@@ -56,6 +56,13 @@ public class Card {
         this.size = size;
         this.bitmap = Bitmap.createScaledBitmap(bitmap,(int)(4*size/5),(int)(3*size/5),true);
     }
+    public boolean handleTap(float x,float y) {
+        boolean condition = x>=this.x && x<=this.x+size && y>=this.y && y<=this.y+size;
+        if(condition && onClickListener!=null) {
+            onClickListener.onClick();
+        }
+        return condition;
+    }
     public int hashCode() {
         return bitmap.hashCode()+title.hashCode();
     }
